@@ -1,23 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+ <head>
     <meta charset="UTF-8">
     <title>OpenCV.js Test</title>
-    <style>
-           html, body, h1 {font-family:monospace;}
-    </style>
+    <style>html, body, h1 {font-family:monospace;margin: 0;}</style>
 </head>
 <body>
        <h1>TEST : OpenCV</h1>
-    <canvas id="canvas" width="640" height="480"></canvas>
-    <div id="result"></div>
+       <canvas id="canvas" width="640" height="480"></canvas>
+       <div id="result"></div>
 
-    <!-- Подключите OpenCV -->
+
     <script>
         function onOpenCVReady() {
             console.log("OpenCV загружен и готов к использованию!");
 
-            // Ждём, пока OpenCV.js полностью инициализируется
+            // Ждём, пока OpenCV полностью инициализируется
             cv['onRuntimeInitialized'] = () => {
                 console.log("OpenCV инициализирован!");
 
