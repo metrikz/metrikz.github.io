@@ -3,17 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <title>OpenCV.js Test</title>
+<style>
+       html, body, h1 {font-family:monospace;}
+</style>
 </head>
 <body>
-    <h1>Тест OpenCV.js</h1>
+    <h1>ТЕСТ OpenCV</h1>
     <canvas id="canvas" width="640" height="480"></canvas>
     <div id="result"></div>
 
     <!-- Подключите OpenCV.js -->
-    <script async src="js/opencv.js" type="text/javascript"></script>
     <script>
         function onOpenCVReady() {
-            console.log("OpenCV.js загружен!");
+            console.log("OpenCV загружен и готов к использованию!");
+
+            if (!cv || !cv.imread) {
+                console.error("OpenCV не инициализирован!");
+                return;
+            }
 
             const canvas = document.getElementById('canvas');
             const ctx = canvas.getContext('2d');
@@ -22,7 +29,7 @@
             // Рисуем тестовое изображение
             ctx.fillStyle = 'green';
             ctx.fillRect(0, 0, 320, 240);
-            ctx.fillStyle = 'red';
+            ctx.fillStyle = 'darkgren';
             ctx.fillRect(320, 240, 320, 240);
 
             // Анализируем изображение
@@ -41,16 +48,18 @@
             dst.delete();
         }
 
-        if (typeof cv !== 'undefined') {
+        // Загрузка OpenCV.js
+        const script = document.createElement('script');
+        script.src = 'js/opencv.js'; // Укажите правильный путь
+        script.async = true;
+        script.onload = () => {
+            console.log("OpenCV загружен!");
             onOpenCVReady();
-        } else {
-            let checkOpenCV = setInterval(() => {
-                if (typeof cv !== 'undefined') {
-                    clearInterval(checkOpenCV);
-                    onOpenCVReady();
-                }
-            }, 100);
-        }
+        };
+        script.onerror = () => {
+            console.error("Ошибка загрузки OpenCV !");
+        };
+        document.head.appendChild(script);
     </script>
 </body>
 </html>
