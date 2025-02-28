@@ -15,14 +15,14 @@
     <!-- Подключите OpenCV -->
     <script>
         function onOpenCVReady() {
-            console.log("OpenCV.js загружен и готов к использованию!");
+            console.log("OpenCV загружен и готов к использованию!");
 
             // Ждём, пока OpenCV.js полностью инициализируется
             cv['onRuntimeInitialized'] = () => {
-                console.log("OpenCV.js инициализирован!");
+                console.log("OpenCV инициализирован!");
 
                 if (!cv || !cv.imread) {
-                    console.error("OpenCV.js не инициализирован!");
+                    console.error("OpenCV не инициализирован!");
                     return;
                 }
 
@@ -58,11 +58,11 @@
         script.src = 'js/opencv.js'; // Укажите правильный путь
         script.async = true;
         script.onload = () => {
-            console.log("OpenCV.js загружен!");
+            console.log("OpenCV загружен!");
             onOpenCVReady();
         };
         script.onerror = () => {
-            console.error("Ошибка загрузки OpenCV.js!");
+            console.error("Ошибка загрузки OpenCV !");
         };
         document.head.appendChild(script);
     </script>
